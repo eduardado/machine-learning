@@ -1,0 +1,774 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>tfg.md</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+	padding: 0 26px;
+	line-height: var(--vscode-markdown-line-height, 22px);
+	word-wrap: break-word;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left-width: 5px;
+	border-left-style: solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 1em;
+	line-height: 1.357em;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+pre code {
+	color: var(--vscode-editor-foreground);
+	tab-size: 4;
+}
+
+/** Theming */
+
+.vscode-light pre {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+</style>
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+	padding: 0 12px;
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+code {
+	font-size: 14px;
+	line-height: 19px;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+</head>
+<body>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
+          ? 'dark'
+          : 'default'
+    });
+  </script>
+<h1 id="introducci%C3%B3n-teorico-pr%C3%A1ctica-a-%22machine-learning%22-y-%22deep-neural-networks%22-con-tensorflow">Introducción teorico-práctica a &quot;Machine learning&quot; y &quot;Deep Neural Networks&quot; con Tensorflow</h1>
+<center><img src="attachments/2021-05-16-19-31-29.png"  width="300"/></center>
+<pre><code>- Eduardo Domínguez;
+- 2º Desarrollo de Aplicaciones Multiplataforma
+- Promoción 2019-2021
+</code></pre>
+<h2 id="%C3%ADndice">Índice</h2>
+<h2 id="justificaci%C3%B3n">Justificación</h2>
+<p>El uso de las tecnologías de inteligencia artifical está muy demandado y tiene infinidad de aplicaciones tanto en investigación como en &quot;retail&quot;.
+Actualmente estoy desarrollando mis prácticas de empresa en <code>Tier1 - Comerzzia</code>, empresa que desarrolla sofware aplicado para al sector retail. Esta empresa ya está investigando y aplicando tecnologías de inteligencia artifical a sus productos aportando estas funcionalidades, que redundan en un aumento de la competitividad de sus productos:</p>
+<ul>
+<li>Segmentación de clientes: Si somos capaces de clasificar a un cliente, dadas sus características, en un segmento (jóvenes entusiastas de las tecnología), podemos conocer mejor a nuestros compradores y elaborar campañas de promoción de ciertos productos. Mejorando la estrategia de mercado.</li>
+<li>Sistemas de recomendación: Basándonos en compras pasadas, podríamos ser capaces, usando Machine Learning, de predecir en qué tipo de artículos estaría interesado cada cliente. Esto aumentaría el volumen de ventas.</li>
+<li>Análisis facial: Conocimiento de la satisfacción de un servicio.</li>
+<li>Predicción de ventas:</li>
+<li>Chatbox</li>
+<li>Probadores virtuales</li>
+<li>Cartelería digital inteligente.</li>
+</ul>
+<p>Además de las apliaciones de la IA en el sector retail, en el que me encuentro haciendo mis prácticas como desarrollador, existen otras muchas aplicaciones muy demandadas en investigación que me parecen muy interesantes.</p>
+<p>Un ejemplo del uso de IA en biotecnología sería la solución a un problema crucial a día de hoy: la <code>predicción del plegamiento de proteínas</code>. El problema consiste en, a partir de la secuencia de aminoácidos de una proteína, ser capaz de predecir la estructura tridimensional de una proteína. Debido a que la forma y la función de una proteína están estrechamente relacionadas, conocer qué forma tendrá una proteína nos puede ayudar a comprender su funcionamiento, a diseñar fármacos por ejemplo para destruir patógenos, o descubrir nuevas dianas contra células cancerígenas entre otras aplicaciones.
+<img src="attachments/2021-05-18-12-44-46.png" alt="">
+<em>Esquema de la inferencia de estructura proteica a partir de su sencencia de aminoácidos</em></p>
+<p>En este sentido, ya existe un grupo de investigación que usa comercialmente esta solución.
+<a href="https://www.google.com/search?client=firefox-b-d&amp;q=alphafold+proteins">alphafold</a></p>
+<p>El proyecto que nos ocupa tiene como objetivo servir como introducción teorico-práctica al uso de la inteligencia artificial. Es teórica porque implica la comprensión y explicación de aspectos de relativa complejidad que será necesario comprender. Es práctica porque, a lo largo del proyecto iremos mostrando ejemplos con código que se puede probar y ejecutar sobre la marcha. Además, si el tiempo lo permite, haremos una prueba de concepto real:</p>
+<p>La implementación de un algoritmo  de Machine Learning para el análisis de imágenes. Este deberá ser capaz de diferenciar, tras un proceso de entrenamiento del algoritmo, entre imágenes de perros y gatos con al menos un 63% de precisión.</p>
+<h2 id="marco-te%C3%B3rico">Marco Teórico</h2>
+<h3 id="introducci%C3%B3n">Introducción</h3>
+<p>Las tecnologías conocidas como Machine Learning y Deep Neural Networks (DNN) son desarrollos modernos de una disciplina madre que engloba a ambas, conocida como Inteligencia Artificial (IA).</p>
+<p><em>¿Qué es la IA?</em>
+Una posible definición sería</p>
+<pre><code>La automatización de tareas intelectuales que normalmente son desarrolladas por seres humanos. 
+</code></pre>
+<p>Esta no deja de ser una definición muy general por lo que para entenderla, sería interesante conocer un poco la historia del desarrollo de la IA.</p>
+<p><em>¿Pueden las máquinas pensar?</em></p>
+<p>Históricamente, antes de la llegada de Machine Learning o DNN  la implementación de la IA ha consistido en generar instrucciones del tipo: Si ocurre A-&gt; entonces haz B. Esto se llaman instrucciones y, con ellas, una máquina puede tener una IA que consista unas pocas líneas de código o millones de ellas.</p>
+<p>La IA, siguiendo esta arquitectura, puede ser tan potente como bien diseñadas y pormenorizadas estén dichas instrucciones.  Veamos, a través de un ejemplo, un tipo de IA implementada de esta manera. En el clásico videojuego de los años 80, Pacman, existían 4 enemigos, cada uno de los cuales contaba con su propia IA:</p>
+<ul>
+<li>
+<p>Rojo (Blinky): El más agresivo, se dirige directamente a Pacman en línea recta.
+<img src="attachments/2021-05-16-20-12-57.png"  width="250"/></p>
+</li>
+<li>
+<p>Rosa (Pinky): Intenta enboscar a Pacman dirigiéndose, 4 pasos adelante, en la dirección que lleva Pacman.
+<img src="attachments/2021-05-16-20-14-04.png"  width="200"/></p>
+</li>
+<li>
+<p>Azul (Inky): El más complejo, se dirige a la posición opuesta entre Blinky y Pacman, intentando una &quot;maniobra de pinza&quot; para atrapar a Pacman.
+<img src="attachments/2021-05-16-20-15-36.png" height="200"/></p>
+</li>
+<li>
+<p>Naranja(Clyde): Se dirige hacia Pacman directamente y, cuando se acerca mucho, se da la vuelta y se dirige a su esquina original.
+<img src="attachments/2021-05-16-20-16-42.png" height="200"/></p>
+</li>
+</ul>
+<p><a href="https://www.google.com/logos/2010/pacman10-i.html">Tómate un descanso, y reflexiona sobre la IA mientras te echas una partida a Pacman</a></p>
+<p><em>¿Qué es Machine Learning?</em></p>
+<p>Como mencionamos antes Machine Learning es una sub-disciplina englobada dentro de la IA.
+<img src="attachments/2021-05-17-09-51-14.png" alt="">
+<em>¿Cuál es la diferencia entre la programación clásica y Machine Learning?</em>
+Existe un interesante cambio de paradigma a la hora de implementar este software. En la programación clásica, nosotros dictamos las reglas o <code>instrucciones</code>. Con dichas reglas se transforma una &quot;información de entrada&quot; o <code>input</code>en una &quot;información de salida&quot; o <code>output</code>.
+En Machine Learning, en cambio, lo que suministramos son los inputs y los outputs  y es, el propio software, el que se encargará de analizar la información y general las instrucciones por nosotros.
+<img src="attachments/pc-vs-ml.png" alt=""></p>
+<p>Sin entrar mucho detalle, la abstracción que recibe la información se llama <code>modelo</code>. La misión del desarrollador o programador consiste en elegir el modelo que mejor corresponda al problema que se quiere solucionar así como alimentar al modelo con información de una manera muy determinada que veremos a lo largo de este proyecto.</p>
+<p>Machine Learning : Se llama así porque la máquina necesita <code>aprender</code>. Esto implica el suministro de grandes cantidades de datos para que el modelo genere las reglas en un proceso llamado: <code>Training</code> o entrenamiento del modelo.
+El modelo, una vez entrenado,  será capaz de precedir podrá ser utilizado para, darle la información de entrada de un caso real, para que produzca la información de salida que queramos. Por ejemplo: Podemos cargar una fotografía y que el modelo nos diga si se trata de un perro o de un gato.</p>
+<ul>
+<li>La precisión del modelo no es perfecta. Esto quiero decir que no obtendremos la información de salida correcta el 100% de las veces.</li>
+<li>El objetivo es conseguir un modelo con la <code>mayor precisión posible</code> y que, de esta forma, se comentan el menor número de errores posible.</li>
+</ul>
+<blockquote>
+<p>Irónicamente, aquello que intenta imitar al ser humano, comete errores.</p>
+</blockquote>
+<p><em>¿Qué son las Deep Neural Networks?</em></p>
+<pre><code>Un aplicación de Machine Learning que usa una representación de la información en capas.
+</code></pre>
+<p><img src="attachments/2021-05-17-18-48-30.png" alt=""></p>
+<p><em>¿En qué se diferencia Neural Networks de Machine Learning?</em></p>
+<p>En Machine Learning el sistema aprende  usando la información suministrada para producir una serie de reglas que transforman la información en su estado final: la información de salida.</p>
+<p>En <code>Deep Learning</code> se suministra una capa de información al sistema, que produce otra capa a partir de esta, después, con esa información se produce la siguiente capa y así sucesivamente. A diferencia del Machine Learning en el que los datos sólo sirven para producir unas reglas o modelo, en DNN la propia información ES el modelo. Unas capas afectan a las siguientes en una dirección y, cuando llegan al final, existe una retroalimentación y ajuste del conjunto de capas que, poco a poco, va conformando un modelo cada vez más refinado. En este proceso, la información queda transformada formando parte de una red. Si no le ha quedado claro todavía es completamente normal, no se preocupe, lo explicaremos más adelante en más detalle.</p>
+<p><img src="attachments/nn-vs-machine-learning.png" alt=""></p>
+<p><em>¿Qué es TensorFlow?</em></p>
+<img src="attachments/2021-05-17-19-23-36.png"  width="200"/>
+<pre><code>Es un framework o ecosistema integrado con todas las herramientas necesarias,  open source (código disponible al pública, modificable y distribuible)  que permite crear modelos de Machine Learning y DNN de manera relativamente sencilla y exportable.
+</code></pre>
+<p><em>¿Qué es Keras?</em></p>
+<img src="attachments/2021-05-17-19-22-01.png"  width="200"/>
+<pre><code>Un conjunto de librerías que permite crear DNN sin necesidad de hacerlo desde cero. Es muy útil ya que encapsula y nos permite abstraernos de gran parte de la complejidad matemática necesaria para crear estos modelos. Está escrito en Python y es compatible con TensorFlow.  
+</code></pre>
+<h2 id="tensors">Tensors</h2>
+<p><a href="https://colab.research.google.com/drive/11B4wTn5yDh3GO56hdLfjCCrXeaYc-LDa#scrollTo=WwHrQeBlmScL">Desarrollo - Cuerno número 1 - Tensors</a></p>
+<p>Traduciendo directamente de la documentación de TensorFlow:</p>
+<pre><code>&quot;Un tensor es una generalización de los vectores y las matrices añadiéndole n-dimensiones. Internamente, TensorFlow representa dichos tensores como arrays de datos&quot;
+</code></pre>
+<p>Cabe mencionar, además, que un tensor también representa una <code>operacion o computación parcialmente definida</code>, que eventualmente producirá un valor o resultado. Es decir, un tensor alberga información y al mismo tiempo está definiendo operaciones que la máquina puede procesar usando métodos de las librerías de TensorFlow. Esto se entenderá mejor a través de los ejemplos prácticos de los <code>cuadernos</code>.</p>
+<p><img src="attachments/2021-05-17-19-44-16.png" alt="">
+<em>Un tensor cuya propiedad shape o forma es [2,3,5]</em></p>
+<p><em>Propiedades de un tensor</em></p>
+<ul>
+<li>DataType: el tipo de información que contiene el tensor (entero, float, strings etc.)</li>
+<li>Rank: nº de dimensiones</li>
+<li>Shape: Forma de un tensor. Mencionar que un mismo tensor puede tener diferentes formas. Mirar cuaderno de la sección.</li>
+</ul>
+<p><em>Tipos de tensor</em></p>
+<ul>
+<li>Mutables: no cambian durante la ejecución. Existen diferentes tipos pero no los declararemos durante el proyecto.</li>
+<li>Variables: sí cambian durante la ejecución.</li>
+</ul>
+<h3 id="machine-learning-algoritmos-b%C3%A1sicos">Machine Learning: Algoritmos básicos</h3>
+<p>En esta sección, vamos a ver 4 algoritmos fundamentales de Machine Learning:</p>
+<ul>
+<li>Linear Regression</li>
+<li>Classification</li>
+<li>Clustering</li>
+<li>Hidden Markov Models</li>
+</ul>
+<p>Algunos, como la regresión lineal, son sencillos pero no por ello menos usados y pontentes. Debido a su sencillez, nos servirá para ilustrar los aspectos fundamentales del ML.</p>
+<p>Cada uno de estos modelos tiene muchas variantes e implementaciones. En esta sección veremos los aspectos teóricos de cada uno de ellos. También veremos de manera muy esquematizada los pasos a seguir para implementar estos modelos. Para un entendimiento más profundo ver <code>cuadernos</code> dedicados a cada modelo en la sección de <a href="#desarrollo-resultado-y-an%C3%A1lisis">Desarrollo Resultado y Análisis</a>,  donde podrás ejecutar el código e incluso retocar variables para ver sus efectos sobre el modelo.</p>
+<h4 id="machine-learning-linear-regression">Machine Learning: Linear Regression</h4>
+<p><a href="https://colab.research.google.com/drive/1v3uWoh1cjB7iq9ZaQC6qjYkIT04c-C4T">Regresión Lineal - Supervivencia de los Pasajeros del Titanic</a></p>
+<p>Este modelo busca, en última instancia, encontrar la ecuación de la recta que mejor se ajusta a una nube de puntos. Dicha nube de puntos es un conjunto de datos representados en coordenadas en n-dimensiones. Si estuviesemos trabajando con tan sólo 2 dimensiones la ecuación sería la siguiente:</p>
+<blockquote>
+<p>y = m x + n</p>
+</blockquote>
+<p>Gráficamente:
+<img src="attachments/2021-05-18-11-48-29.png"  width="200"/>
+<em>Representación de la nube de puntos en 2 dimensiones</em>
+<img src="attachments/2021-05-18-11-54-08.png"  width="200"/>
+<em>Representación de la ecuación de recta que mejor se ajusta a los puntos</em></p>
+<p>Este ejemplo es muy sencillo, pero debemos imaginar un escenario en el que la nube de puntos no tiene un patrón que se asemeje claramente a una recta y, tengamos más de 2 dimensiones. Es entonces cuando este modelo adquiere su valor.
+<img src="attachments/2021-05-18-12-29-31.png"  width="200"/>
+<em>Nube de puntos en 3 dimensiones</em>
+Necesitamos tratar los datos antes de poder entrenar el modelo.</p>
+<p>TRATAMIENTO DE DATOS</p>
+<ul>
+<li>
+<p>Hay 2 conjutos de datos o <code>data sets</code>. Los de entrenamiento y los de test. Los de entrenamiento sirven para mejorar el modelo y suelen ser mucho más numerosos que los de test.</p>
+</li>
+<li>
+<p>Se separan los datos porque estamos tratando de evaluar la capacidad del modelo de predecir el futuro. Si no los separásemos no sabríamos si el modelo está prediciendo o memorizando.</p>
+</li>
+<li>
+<p>Descarga de los datos y creación de los dataset. Lo primero es guardar la referencia de los datos en variables, paso intermedio para la creación de <code>dataframes</code>. Éstos objetos son la representación de tablas de datos en la librería de pandas.</p>
+</li>
+<li>
+<p>Un conjunto de datos o <code>dataset</code> se compone de toda la información acerca de un problema. Ésta también incluye la solución real en un columna que denominaremos <code>label</code>#glosario. Uno de los requerimientos a la hora de trabajar con modelos de datos es separar esta columna del dataset y reservarla en una variable aparte. Ver cuaderno.</p>
+</li>
+</ul>
+<p>Si observamos los <a href="https://storage.googleapis.com/tf-datasets/titanic/train.csv">datos</a>, vemos que existen dos tipos de datos, numéricos en las llamadas <code>numeric columns</code>, con infinidad de valores posibles y discretos, y otros con una determinada cantidad de valores que en la mayoría de los casos consisten en cadenas de texto, por ejemplo, hombre/mujer.</p>
+<p>El modelo de regresión lineal, para poder crearse necesita que una homogeneización de los datos y para que queden todos convertirlos a datos numéricos. Por ejemplo hombre-&gt;1, mujer-&gt;2. Esto se puede automatizar usando los módulos de TensorFlow 2.0 para la creación de <code>Feature Columns</code>#glosario. Para más información acerca de la implementación ver cuaderno.</p>
+<p>A la hora de entrenar un modelo, los registros no se dan todos a la vez, se dividen en lotes o <code>batches</code>#glosario. Además, para refinar mejor el modelo, los datos se presentan muchas veces. El número de veces que los datos de entrenamiento se presentan al modelo se llama <code>epochs</code>#glosario. Para lograr esta manera de ofrecer los datos al modelo se utilizan <code>input functions</code>#glosario. Estas funciones sirven para generar un tipo de objeto que el modelo pueda utilizar para entrenarse. Ver cuaderno.</p>
+<h3 id="core-learning-algorithms-the-training-process">Core Learning Algorithms: The Training Process</h3>
+<p>El proceso de entrenamiento suele usar una ingente cantidad de datos, del orden de terabytes o más. Como esta cantidad de información no cabe en RAM es necesario presentarla en partes o <code>batches</code>. Hay un tamaño óptimo de <code>batch</code> para que el proceso no sea demasiado lento.</p>
+<p>Por otro lado tenemos los <code>epochs</code> de los que hablamos anteriormente. El modelo aumentará su precisión si le presentamos el mismo conjunto de datos varios veces. Hay que tener cuidado porque puede ocurrir que sobrepasemos el número óptimo de veces que se presentan los datos, de tal manera que el modelo &quot;memorice&quot; los datos y pierda capacidad predictiva en un fenómeno que se conoce como <code>overfeeding</code>. Lo que ocurre es que l modelo se vuelve muy bueno en clasificar el conjunto de datos de entrenamiento pero se vuelve muy malo en clasificar nuevos datos. La manera de evitar esto es usar un número <code>epoch</code> bajo y después ir aumentandolo hasta alcanzar mejor precisión. #glosario.</p>
+<p>Para poder dar los datos al modelo en <code>batches</code>e <code>epochs</code>es necesario codificarla a un objeto específico   usando <code>Input Functions</code>#glosario. Además de los dos parámetros mencionados, en la función también indicamos si los registros se dan de forma aleatoria o no.</p>
+<p>Cada conjunto de datos, así como la forma en la que se administrará al modelo quedará codificado en una input function (objetos y funciones se pueden almacenar en variables en Python), con la diferencia de que en el caso de los datos de evaluación, no es necesario separar en batches los datos (la cantidad de información es mucho menor) y no es necesario randomizar los datos.</p>
+<p>Finalmente entrenamos el modelo con la input function de los datos de entrenamiento. Tras ello hacemos una <code>evaluacion del modelo</code> usando las input function de los datos de evaluacion. La evaluación va a arrojar una serie de datos estadísticos, pero el valor que más nos interesa el <code>accuracy</code> o precisión. Este dato es un dato agregado y se obtiene al comparar todos los datos de supervivencia que había predicho el modelo, y los compara con los valores reales.</p>
+<p>Si quisiéramos, podríamos investigar, caso por caso, cuál era el valor que el modelo había predicho en comparación con el resultado real, así como los datos de partida. Por ejemplo, qué sexo y clase tenía un pasajero, cuál era la predicción del modelo de su supervivencia vs si sobrevivió o no.</p>
+<h3 id="core-learning-algorithms-classification">Core Learning Algorithms: Classification</h3>
+<p><a href="https://colab.research.google.com/drive/1UOOsY4sQjSTVp0BL3X3zAWouOGr1byyJ#scrollTo=Xgse3XjLv-iF">Cuaderno Clasiffication</a></p>
+<p>¿Para qué sirve un modelo de clasificación ? Para a predecir, la <code>probabilidad de que un registro de datos pertenezca a una categoría</code>. El ejemplo de clasificación que vemos en el cuaderno trata de, dados unos datos de medición de pétalos, sépalos y otras partes de una flor, el modelo nos dará probabilidades de que ese flor pertenezca a una especie de planta.</p>
+<p>En TensorFlow hay muchos modelos prehechos. De entro los modelos de clasificación podemos elegir entre dos principales: DNNClasiffier (Deep Neural Network) o LinearClassifier. El último, funciona de manera muy similar a la regresión lineal, salvo que la probabilidad que devuelve es la de pertenencia a una categoría. En este caso vamos a usar DNNClasiffier porque lo recomienda TensorFlow para este tipo de problemas. En la práctica, los modelos se pueden cambiar en cualquier momento a conveniencia de las necesidades  del proyecto o investigación.</p>
+<p>Los pasos a seguir son similares al modelo anterior y están muy bien explicados en el cuaderno de esta sección.</p>
+<ol>
+<li>Descarga de datos</li>
+<li>Creación de los dataframe de pandas</li>
+<li>Definición de las feature columns</li>
+<li>Definición de la input function</li>
+<li>Definición del modelo del modelo DNN</li>
+<li>Entrenamiento del modelo</li>
+<li>Evaluación del modelo</li>
+<li>Predicciones</li>
+</ol>
+<p>La diferencia con el modelo anterior se comienza, obviamente, con la definición del modelo. Veamos la arquitectura del modelo DNN, que consta de las siguientes capas:</p>
+<ul>
+<li><code>Input layer</code></li>
+<li><code>Middle layers</code> (Hidden layers): numerosas y compuestas, cada una, <code>nodes</code> o nodos.</li>
+<li><code>Output layer</code></li>
+<li>Número de classes o <code>clases</code></li>
+</ul>
+<p>Cuando se trata de entrenar el modelo se hace igualmente con Input functions. La diferencia radica en que en este caso hay que definir los <code>steps</code>#glosario en lugar de los epochs. Los steps son el nº de pasos que utilizará el modelo para procesar los datos. Este nº se puede modificar para obtener mejores valores. No siempre un mayor número de pasos de como resultado un modelo con una mejor precisión. Si observamos el log nos va informando del número de pasos y del <code>loss</code> de cada uno de ellos. Explicaremos este parámetro más adelante, pero por el momento basta con comprender que cuanto más bajo sea, más exitoso está siendo el proceso de entrenamiento.</p>
+<p>Una vez entrenado el modelo, podemos hacer predicciones a partir de un registro. Por ejemplo, le damos las medidas de partes anatómicas de una flor y el modelo nos devolverá a qué especie pertenece y con qué probabilidad. El modelo sólo entiende la información a partir de un tipo de objeto, que contiene una input function. En este caso no hay <code>steps</code> porque no estamos entrenando el modelo.</p>
+<h3 id="core-learning-algorithms-building-the-model">Core Learning Algorithms: Building the Model</h3>
+<p>(continuación), está reflejado en el epígrafe anterior</p>
+<h3 id="core-learning-algorithms-clusteringk-means-clustering">Core Learning Algorithms: Clustering(K-means-Clustering)</h3>
+<ul>
+<li>
+<p>Es un modelo no supervisado.Esto quiere decir que una vez arranca no podemos hacer variar ningún parámetro.</p>
+</li>
+<li>
+<p>Se usa en una situación muy específica: cuando tenemos mucha información o <code>inputs</code> pero no tenemos información de salida o <code>outputs</code>. Lo que hace este algoritmo es agrupar datos similares. Vamos a centrarnos, en concreto en el modelo <code>K-Means</code>.</p>
+</li>
+<li>
+<p>El algoritmo sigue estos siguientes pasos:
+<img src="attachments/2021-05-12-20-55-52.png" alt=""></p>
+</li>
+</ul>
+<ol>
+<li>Asignación aletoria de K-centroids: Asigna un número de K de <code>centroids</code>o centroides -&gt; ¿Qué es un centroid?#glosario  El lugar que define a un <code>cluster</code> #glosario o agrupación de datos. K es un número entero.</li>
+<li>Asigna los datos al K-centroid más cercano por distancia.</li>
+<li>Se mueven todos los centroid al <code>centro de masa</code> de todos los puntos de datos que se asignaron a dicho centroid.</li>
+<li>Se vuelven a reasignar los puntos de datos al centroide más cercano.</li>
+<li>Se repiten los pasos 2-4. Hasta que los puntos de datos dejan de cambiar a que cluster pertenecen.</li>
+</ol>
+<p>Si lo pensamos, lo único que se mueven son los centroides. Lo que hace el algoritmo es ajustar los centros de masa de cada cluster, para así agrupar datos de la manera más precisa posible.</p>
+<p>Una particularidad de este modelo es que necesitamos saber cuántos cluster queremos que busque el algoritmo (el número K). Existen otros algoritmos que ayudan a conocer cuál es el número óptimo de clusters, pero su uso se sale del objetivo de este epígrafe.</p>
+<h3 id="core-learning-algorithms-hidden-markov-models">Core Learning Algorithms: Hidden Markov Models</h3>
+<p><a href="https://colab.research.google.com/drive/1M-EKpqVIECf6rXNhLuuzwIDQQUGnSF-W">Cuaderno Hidden Markov Models</a></p>
+<p>Este modelo se compone de una serie finita de estados, cada uno de los cuales está asociado con una <code>probabilidad de distribución</code>. Ésta probabilidad suele ser multidimensional.
+Como entenderemos a lo largo de esta sección, la diferencia entre este tipo de modelos y, por ejemplo, la regresión lineal o la clasificación es que la respuesta a la pregunta ¿Qué ocurrirá mañana? No es ni un valor, ni un porcentaje sino una <code>función de distribución de probabilidades</code></p>
+<p><em>¿Qué es una distribución de probabilidades?</em></p>
+<p>Sin adentrarnos demasiado en el campo de la estadística, que no es el objetivo, esto quiere decir que dado un evento aleatorio (lanzamiento de dados), existe una función que nos indica la probabilidad de que uno de los eventos esperados suceda (el resultado la tirada de datos). Éste es el aspecto de una de las funciones de distribución que más se dan en la naturaleza: la Distribución Normal o Campana de Gaus.
+<img src="attachments/distribucion-normal.png"  height="200"/></p>
+<p>Adentrémonos en las particularidades de los Hidden Markov Models (HMM). Éstos se componen de las siguientes abstracciones de los datos y de otras abstracciones que veremos a continuación. Como haremos en el <a href="https://colab.research.google.com/drive/1M-EKpqVIECf6rXNhLuuzwIDQQUGnSF-W">cuaderno</a>, explicaremos el funcionamiento de este modelo a través de un ejemplo: la predicción del tiempo.</p>
+<h4 id="datos-en-hmm">DATOS en HMM</h4>
+<p>En otros modelos usábamos conjuntos de datos con 100 o más registros, por contra, en HMM trabajaremos únicamente con una función de distribución que o bien es dada, o bien podemos adquirirla a partir de un conjunto de datos tras un análisis estadístico.</p>
+<h4 id="componentes-de-los-hmm">COMPONENTES de los  HMM</h4>
+<p>Usando el ejemplo de predicción del tiempo, definamos dichos componentes:</p>
+<ul>
+<li><code>Estados</code>: cálido, frío, verde, azul, amarillo etc. Estos estados no se pueden observar de manera directa, están <code>ocultos</code>, (de ahí la nomeclatura del modelo).</li>
+<li><code>Observaciones de distribución</code>: Cada estado tiene un resultado específico observable. Que ocurre siguiendo una distribución de probabilidad. Por ejemplo: En un día soleado, la probabilidad de que Eduardo esté contento es del 80 % frente a un 20% de que esté triste.</li>
+<li><code>Transiciones de distribución</code>: Cada estado tiene asociado una probabilidad de cambiar a otro estado. Por ejemplo: Un día lluvioso tiene un 70 % de probabilides de ser sucedido por un día soleado y un 30% por otro día lluvioso más.</li>
+</ul>
+<p><em>Proceso de creación y uso del modelo</em>
+Estos son los pasos en la implementación y uso del modelo. Cabe destacar que en este caso, como no tenemos un conjunto de datos sino distribuciones de probabilidad con las que alimentamos el modelo, no es necesario el proceso de <code>ENTRENAMIENTO DEL MODELO</code>.</p>
+<ol>
+<li>Definición de las variables de distribución a partir de observaciones</li>
+<li>Creación del modelo a partir de las variables de distribución y añadiendo el nº de <code>STEPS</code>.</li>
+<li>Ejecutar el módelo y obtener el tensor</li>
+<li>Ver los valores del tensor
+<img src="attachments/markov-model.png" alt=""></li>
+</ol>
+<p><em>Aconsejamos ver la implementación del modelo en el cuaderno adjunto</em>.</p>
+<h3 id="core-learning-algorithms-using-probabilities-to-make-predictions">Core Learning Algorithms: Using probabilities to Make Predictions</h3>
+<p>Este epígrafe está incluido en el anterior.</p>
+<h3 id="deep-neural-networks-with-tensorflow">Deep Neural Networks with TensorFlow</h3>
+<h4 id="introducci%C3%B3n"><em>Introducción</em></h4>
+<p>Una  <code>Deep Neural Network</code> (DNN) es una representación de datos en capas. Cada capa está formada de un número de <code>neurons</code> o neuronas conectadas entre sí a modo de malla o red (network). El término <code>deep</code> atiende a la profundidad de la malla, debido a las  múltiples capas de las que se componen estos modelos y, en las que se establecen los datos.</p>
+<blockquote>
+<p>¿Qué diferencia las DNN de los modelos vistos anteriormente?</p>
+</blockquote>
+<p>En anteriores modelos (Regresión lineal, Clasificación, Clustering y HMM ) los datos no sufrían ninguna transformación. Tras crear el modelo, prepararlo dándole unas características definitorias de los datos o <code>features</code> y entrenar modelo, éste, al recibir unos datos problema devolvía una solución después de un proceso matemático. Los datos sin embargo, permanecían intactos después de este proceso, alojados en una <code>capa</code>.</p>
+<p>En DNN, los datos se procesan de manera diferente. En estos modelos, los datos entran en la primera capa o <code>input layer</code>, para ir pasando a través de las capas intermedias o <code>hidden layers</code> hasta llegar a la capa de salida o <code>output layer</code>. Los datos, alojados en los nodos de la red o <code>neurons</code> van sufriendo una serie de transformaciones, de manera que según en qué capa nos encontremos su valores y propiedades irán cambiando.</p>
+<p>Será a través de estas transformaciones que el modelo extraerá una <code>comprensión abstacta</code>de los datos, lo que le permitirá, después de un proceso de entrenamiento, aumentar su capacidad predictiva y ser capaz de obtener una solución con el intervalo de confianza más elevado posible a partir de un conjunto de datos <code>problema</code>.</p>
+<h4 id="c%C3%B3mo-funcionan-las-dnn"><em>Cómo funcionan las DNN</em></h4>
+<p>Empezaremos haciendo una definición con un nivel alto de abstracción  sobre las matemáticas que gobiernan estos modelos, que, a bajo nivel se basan en operaciones básicas y álgebra lineal (vectores, matrices, sistemas de ecuaciones lineales, especios vectoriales y sus transformaciones).
+<img src="attachments/2021-05-16-09-57-01.png" alt="">
+<em>Espacio vectorial en 3 dimensiones (euclídeo). Los datos están representados mediante coordenadas. Pueden incluirse en planos o vectores y las transformaciones algebraicas representan movimientos de dichos datos en el espacio vectorial</em></p>
+<p>Como veremos en mayor detalle más adelante, las DNN utilizan transformaciones algebraicas para &quot;mover los datos&quot; y entenderlos mejor, de igual manera que haría un niño cuando le dan un juguete de &quot;lego&quot;: monta y desmonta las piezas del barco pirata para comprender mejor el sentido del barco en sí además de cómo se relacionan las piezas para poder, más adelante, añadir nuevas funciones al barco respetando la lógica del conjunto.</p>
+<p>Cada <code>neural network</code> consite en una secuencia de <code>layers</code>. Estas capas están formadas por <code>neuronas</code>. Las neuronas de una capa están conectadas con las neuronas de la siguiente capa. Cada capa tiene, además, una neurona especial llamada <code>bias</code>o sesgo, que no tiene ninguna conexión con otras y simplemente aloja un valor numérico.</p>
+<p>Cada capa puede tener diferentes niveles de <code>densidad de conexión</code> con la siguiente capa. Esto quiere decir que una neurona puede establecer conexiones con algunas o todas las neuronas de la capa siguiente. Se dice que una conexión es <code>totalmente densa</code> cuando todas las neuronas de una capa están conectadas con todas la neuronas de la siguiente capa.
+<img src="attachments/2021-05-16-11-52-13.png" alt=""></p>
+<p>Los <code>datos</code> comienzan su periplo en la <code>input layer</code>, la primera capa, y van pasando de capa en capa. Alojados en las neuronas de cada capa, quedan definidos mediante la siguiente ecuación:</p>
+<blockquote>
+<p>$Y =(\sum_{i=0}^n w_i x_i) + b$
+<em><code>Weighed Sum</code> o Ecuación de suma de los pesos</em></p>
+</blockquote>
+<blockquote>
+<p>$w$ es <code>weight</code> o &quot;peso&quot; de cada conexión con una neurona.
+$x$ es el valor de de la ...
+$b$ es el <code>bias</code> de cada capa
+$n$ es el número de conexiones
+$\sum$ es el sumatorio
+$Y$ es el cómputo resultado de cada neurona</p>
+</blockquote>
+<p>Cada neurona(o capa???) tiene un valor $Y$ . Dicho valor, como vemos, influenciará al valor $Y$ de las neuronas siguientes con las que está conectada.</p>
+<p>La ecuación, no está definida todavía. Hasta ahora, el modelo ha quedado definido con un sumatorio muy sencillo definido por los <code>datos de partida</code>, el <code>peso</code>de las conexiones entre neuronas, el <code>sesgo</code> de cada capa y el número de neuronas de cada capa. Sin embargo por mucho que nos pese (o nos entusiasme) el modelo se complica. La función de $Y$ está corregida por otra multitud de funciones, llamadas <code>Activation Functions</code> o funciones de activación-&gt; $F$. Éstas son funciones actúan sobre los datos dándoles <code>multidimensionalidad</code> y <code>complejidad</code>. Las explicaremos en los siguientes epígrafes.</p>
+<p>La ecuación no está completa todavía, necesitamos unir la denominada <code>activation function</code>o función de activación (la explicamos en detalle más adelante). Esta función se añade a la ecuación para añadir <code>complejidad</code>y <code>dimensionalidad</code>a nuestra red. La ecuación, una vez añadida la función de activación quedaría de la siguiente manera:</p>
+<blockquote>
+<p>$Y =F((\sum_{i=0}^n w_i x_i) + b)$</p>
+</blockquote>
+<p>Nuestra red comenzará con un conjunto de activation functions predefinidas, con <code>weights</code> y <code>bias</code>aleatorios para cada conexión y capa, respectivamente. A medida que entrenamos el modelo añadiéndole nuevos datos, éste aprenderá y corregirá weigths y biases usando una técnica llamada <code>backpropagation</code>o propagación retrógada (la explicaremos más adelante). Una vez que los weigths y bias de nuestra red son correctos, el modelo será capaz de producir <code>predicciones</code> que tengan sentido. Las predicciones se observan en la última capa, llamada la <code>output layer</code> o capa de salida.</p>
+<h3 id="neural-networks-activation-functions">Neural Networks: Activation functions</h3>
+<blockquote>
+<p>$Y =F((\sum_{i=0}^n w_i x_i) + b)$</p>
+</blockquote>
+<ul>
+<li>Las funciones de activación se aplican  sobre cada capa de la red neuronal.
+Existen diferentes <code>activation functions</code>. Las funciones de activación se aplican a los valores $Y$ de cada neurona <code>antes</code>de mandarlo a la siguiente.</li>
+<li>RELU (Rectified Linear Unit): Devuelve el valor absoluto de un número. [0, + infinito]</li>
+<li>TANH (Hyperbolic Tangent) : Transforma los valores finales en un rango [-1,1]</li>
+<li>Sigmoid: Transforma los valores en el rengo [0,1].</li>
+<li>Nosotros podemos definir qué funciones de activación se aplican a cada neurona.</li>
+<li>La elección más importante es sobre la <code>output layer</code> que es la última neurona.</li>
+<li>Las funciones de activación introducen complejidad y dimensionalidad. Por ejmplo imaginemos una serie de coordenadas que pertenecen a un plano. Si aplicamos una sigmoide lo que estamos haciendo es mover los puntos ortogonalmente hacia arriba y abajo del plano para obtener información de los puntos. (esto tendrá sentido después como veamos el proceso de entrenamiento).
+<img src="attachments/2021-05-15-21-42-04.png" alt="">
+. Lo que hace, si lo pensamos es cambiar las coordenadas desde 2 dimensiones a 3 dimensiones con la idea de extraer más detalles que antes no se podían extraer. Por ejemplo, imaginemos un cuadrado. A partir de él podemos extraer la altura, la anchura y el color. Si añadimos una dimensión, podremos conocer, el volumen, la profundad, el número de  caras etc.. Valga la simplificación, de lo que se trata es de extraer más información del mismo conunto de datos, con la idea de entenderlos mejor y poder hacer mejores predicciones.</li>
+</ul>
+<p><code>Loss function</code>: Cuánto se aleja el valor obtenido en el <code>output layer</code>o capa final del valor esperado. Por ejemplo si esperábamos un valor 0 o 1 y obtenemos un 0.7 la <code>loss function</code> nos da la diferencia. Esta función es una estimación de cómo de buena es la red de neuronas para predecir/procesar un valor. Este valor sirve para retocar las redes neuronales y mejorarlas. Queremos que nuestra función tenga un valor de <code>loss</code>lo más bajo posible. Tipos:</p>
+<ul>
+<li>Mean Squared error</li>
+<li>Mean Absolute Erro</li>
+<li>...
+Buscamos el <code>global minimun</code> que es la red neuronal con menos loss.
+El proceso por el cual se consigue optimizar la red neuronal para conseguir un loss minimo se llama <code>gradient descend</code>. Imaginemos que hemos empezado la red neural, a partir de los puntos aletorios en las crestas rojas del plano que se ve en la imagen. Tenemos un loss muy alto. El objetivo es movernos hacia las zonas bajas o azul marino.
+<img src="attachments/2021-05-15-21-54-41.png" alt="">
+Lo que significa en realidad el <code>gradient descend</code>es la dirección de evolución que tiene que tomar nuestra red neuronal para alcanzar ese valor deseado. Asi, en función del valor que nos da la <code>los function</code>se va actualizando la red neuronal de manera retrógrada para mejorar la red neural.</li>
+</ul>
+<p>Esto que hemos visto es el proceso de entrenamiento, que consta de los siguientes pasos.</p>
+<h3 id="neural-networks-optimizers">Neural Networks: Optimizers</h3>
+<p>Es la función que hace el <code>backpropagation</code> por nosotros. Existen muchas variantes:</p>
+<ul>
+<li>Gradient descent (la que usaremos)</li>
+<li>Stochastic Gradient Descent</li>
+<li>Mini-Batch Gradient Descent</li>
+<li>Momentum</li>
+<li>Nesterov Accelerated Gradient</li>
+</ul>
+<h3 id="neural-networks-creating-a-model">Neural Networks: Creating a model</h3>
+<h2 id="objetivos">Objetivos</h2>
+<h3 id="objetivos-generales">Objetivos Generales</h3>
+<p>El objetivo del proyecto es la comprensión básica de las disciplinas Machine Learning y Deep Neural Networks. Deberemos ser capaces de comprender y aplicar los principales elementos tanto teóricos como prácticos de estas ramas de la Inteligencia Artifical.</p>
+<h3 id="objetivos-espec%C3%ADficos">Objetivos Específicos</h3>
+<ol>
+<li>Comprender el uso de algunos módulos y métodos de Tensorflow</li>
+<li>Construir y aplicar un modelo de regresión lineal. (Machine Learning)</li>
+<li>Construir y aplicar un modelo de clasificación (DNN)</li>
+<li>Construir y aplicar un modelo de tipo Hidden Markov (Machine Learning)</li>
+<li>Construir y aplicar un modelo de clasificación de imágenes (DNN)</li>
+<li>Usar el lenguaje de programación Python</li>
+<li>Usar los módulos y librerías: TensorFlow, Keras, Pandas, Numpy y otros.</li>
+</ol>
+<h2 id="metodolog%C3%ADa">Metodología</h2>
+<p>El proyecto tendrá dos partes diferenciadas pero que se apoyan la una en la otra.</p>
+<p>Por un lado una parte teórica en la que explicaremos, de la manera más asequible posible para cualquier lector, tanto definiciones, como desarrollo y procedimientos generales a la hora de usar ML y DNN. Se encontrará en la sección <a href="#marco-te%C3%B3rico">Marco Teórico</a>. Para ello nos apoyaremos en la bibliografía referenciada, así como en diagramas bien creados por nosotros o bien libres de derechos de autor para hacer más comprensible todos los conceptos.</p>
+<p>Por otro lado tenderemos una parte práctica nos valdremos de un entorno de desarrollo en la nube de Google llamado <a href="https://colab.research.google.com">Colaboratory</a>.  Se trata de  entorno de desarrollo completo, que pondrá a nuestra disposición la capacidad de instalar en una máquina todas las librerías y módulos necesarios. Usando el lenguaje Python podremos ejemplificar, demostrar y explicar la aplicación práctica en códico fuente de estos modelos.</p>
+<ul>
+<li><a href="https://www.tensorflow.org/">TensorFlow</a>: Es un framework open source de uso muy extendido que permite utilizar Machine Learning y creación de Redes Neuronales de manera relativamente sencilla.</li>
+<li><a href="https://www.python.org/">Python</a>: Lenguaje de programación</li>
+<li><a href="https://colab.research.google.com/notebooks/intro.ipynb?utm_source=scs-index">Colaboratory</a>: Será nuestro IDE o Entorno de desarrollo en la nube al mismo tiempo que nuestro entorno de ejecución.. Permite usar TensorFlow así como los submódulos que nos harán falta durante el proyecto. Soporta el uso de Python como lenguaje de programación.</li>
+</ul>
+<h2 id="desarrollo-resultado-y-an%C3%A1lisis">Desarrollo Resultado y Análisis</h2>
+<ol>
+<li><a href="https://colab.research.google.com/drive/11B4wTn5yDh3GO56hdLfjCCrXeaYc-LDa#scrollTo=2Jry-Cohl7mm">Introducción a Python, Tensorflow y Collaboratory - Tensores y módulos esenciales</a></li>
+<li><a href="https://colab.research.google.com/drive/1v3uWoh1cjB7iq9ZaQC6qjYkIT04c-C4T">Regresión Lineal - Supervivencia de los Pasajeros del Titanic</a></li>
+<li><a href="https://colab.research.google.com/drive/1UOOsY4sQjSTVp0BL3X3zAWouOGr1byyJ">Classification - Infirendo especies de plantas</a></li>
+<li><a href="https://colab.research.google.com/drive/1M-EKpqVIECf6rXNhLuuzwIDQQUGnSF-W">Hidden Markov Models - Predicción del tiempo</a></li>
+<li><a href="https://colab.research.google.com/drive/1s4T_3bQ4lPY9BBDNYVZ4X_t572aN0OFu">Deep Neural Networks - Entranando un modelo capaz de clasificar imágenes en diferentes tipos de ropa</a></li>
+</ol>
+<pre class="hljs"><code><div><span class="hljs-comment"># Importación de librerías y módulos necesarios para regresión lineal</span>
+
+<span class="hljs-keyword">from</span> __future__ <span class="hljs-keyword">import</span> absolute_import, division, print_function, unicode_literals
+
+<span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np <span class="hljs-comment"># módulo con versión mejorada de arrays en python para cálculos con arrays multidimensionales</span>
+<span class="hljs-keyword">import</span> pandas <span class="hljs-keyword">as</span> pd <span class="hljs-comment"># módulo para manipular y visualizar datasets </span>
+<span class="hljs-keyword">import</span> matplotlib.pyplot <span class="hljs-keyword">as</span> plt <span class="hljs-comment"># módulo para pintar gráficas</span>
+<span class="hljs-keyword">from</span> IPython.display <span class="hljs-keyword">import</span> clear_output <span class="hljs-comment"># específico para limpiar el output de este IDE</span>
+<span class="hljs-keyword">from</span> six.moves <span class="hljs-keyword">import</span> urllib <span class="hljs-comment">#</span>
+
+<span class="hljs-keyword">import</span> tensorflow.compat.v2.feature_column <span class="hljs-keyword">as</span> fc <span class="hljs-comment"># Feature Column es un requerimiento para usar Regresión Lineal</span>
+
+<span class="hljs-keyword">import</span> tensorflow <span class="hljs-keyword">as</span> tf 
+</div></code></pre>
+<h2 id="bibliograf%C3%ADa--referencias">Bibliografía / Referencias</h2>
+<ul>
+<li><a href="https://www.comerzzia.com/portal/newsroom/-/asset_publisher/Zmw6APcvqA1I/content/%C2%BFpor-que-la-ai-esta-revolucionando-todo-el-sector-del-retail-">IA en comerzzia y retail</a></li>
+<li><a href="https://www.tensorflow.org/guide/tensor">Introduccion a TensorFlow. Website Oficial. </a></li>
+<li><a href="https://www.freecodecamp.org/learn/machine-learning-with-python/">Machine Learning with Python. Certificación de Freecodecamp.</a></li>
+<li><a href="https://youtu.be/15dxuAbTC0A?t=465">Explicación de la inteligencia artificial en Pacman. Canal Retroahoy.</a></li>
+<li><a href="https://www.tensorflow.org/guide/tensor">Introducción a los tensores</a></li>
+</ul>
+<ol>
+<li>
+<p>Doshi, Sanket. “Various Optimization Algorithms For Training Neural Network.” Medium, Medium, 10 Mar. 2019, www.medium.com/@sdoshi579/optimizers-for-training-neural-network-59450d71caf6.</p>
+</li>
+<li>
+<p>“Basic Classification: Classify Images of Clothing  :   TensorFlow Core.” TensorFlow, www.tensorflow.org/tutorials/keras/classification.</p>
+</li>
+<li>
+<p>“Gradient Descent¶.” Gradient Descent - ML Glossary Documentation, www.ml-cheatsheet.readthedocs.io/en/latest/gradient_descent.html.</p>
+</li>
+<li>
+<p>Chollet François. Deep Learning with Python. Manning Publications Co., 2018.</p>
+</li>
+<li>
+<p>“Keras: The Python Deep Learning Library.” Home - Keras Documentation, www.keras.io/.</p>
+</li>
+<li>
+<p>Chen, James. “Line Of Best Fit.” Investopedia, Investopedia, 29 Jan. 2020, www.investopedia.com/terms/l/line-of-best-fit.asp.</p>
+</li>
+<li>
+<p>“Tf.feature_column.categorical_column_with_vocabulary_list.” TensorFlow, www.tensorflow.org/api_docs/python/tf/feature_column/categorical_column_with_vocabulary_list?version=stable.</p>
+</li>
+<li>
+<p>“Build a Linear Model with Estimators  :   TensorFlow Core.” TensorFlow, www.tensorflow.org/tutorials/estimator/linear.</p>
+</li>
+<li>
+<p>Staff, EasyBib. “The Free Automatic Bibliography Composer.” EasyBib, Chegg, 1 Jan. 2020, www.easybib.com/project/style/mla8?id=1582473656_5e52a1b8c84d52.80301186.</p>
+</li>
+<li>
+<p>Seif, George. “The 5 Clustering Algorithms Data Scientists Need to Know.” Medium, Towards Data Science, 14 Sept. 2019, https://towardsdatascience.com/the-5-clustering-algorithms-data-scientists-need-to-know-a36d136ef68.</p>
+</li>
+<li>
+<p>Definition of Hidden Markov Model, http://jedlik.phy.bme.hu/~gerjanos/HMM/node4.html.</p>
+</li>
+<li>
+<p>“Tfp.distributions.HiddenMarkovModel  :   TensorFlow Probability.” TensorFlow, www.tensorflow.org/probability/api_docs/python/tfp/distributions/HiddenMarkovModel.</p>
+</li>
+<li>
+<p>https://deepmind.com/blog/article/alphafold-a-solution-to-a-50-year-old-grand-challenge-in-biology</p>
+</li>
+</ol>
+<p>https://colab.research.google.com/notebooks/intro.ipynb?utm_source=scs-index</p>
+
+</body>
+</html>
