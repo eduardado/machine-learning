@@ -1,6 +1,9 @@
 # Machine Learning Exploration with Python and Tensorflow
 
-![Cover](machine-learning.png)
+<p align="center">
+  <img src="machine-learning-tensor-flow.png" width="50%" height="50%">  
+</p>
+
 
 ## Overview
 Welcome to my final project for the Associate Degree in Multiplatform Software Development. This repository is a collection of various projects that delve into the fascinating world of Machine Learning, utilizing Python and Tensorflow. Designed with practicality in mind, each project is executable in Google Colab, providing a seamless and accessible experience for anyone interested in the field.
